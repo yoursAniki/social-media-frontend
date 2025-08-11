@@ -127,7 +127,7 @@ export default defineConfig((ctx) => {
     sourceFiles: {
       rootComponent: 'src/app/App.vue',
       router: 'src/app/router/index',
-    //   store: 'src/store/index',
+      store: 'src/stores/index',
     //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
       // pwaServiceWorker: 'src-pwa/custom-service-worker',
     //   pwaManifestFile: 'src-pwa/manifest.json',
