@@ -1,1 +1,1 @@
-export { default as AuthCard } from './AuthCard.vue';
+export { default as AuthCard } from './components/AuthCard.vue';

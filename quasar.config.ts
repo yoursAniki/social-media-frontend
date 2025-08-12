@@ -128,12 +128,12 @@ export default defineConfig((ctx) => {
       rootComponent: 'src/app/App.vue',
       router: 'src/app/router/index',
       store: 'src/stores/index',
-    //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
+      //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
       // pwaServiceWorker: 'src-pwa/custom-service-worker',
-    //   pwaManifestFile: 'src-pwa/manifest.json',
-    //   electronMain: 'src-electron/electron-main',
-    //   electronPreload: 'src-electron/electron-preload'
-    //   bexManifestFile: 'src-bex/manifest.json
+      //   pwaManifestFile: 'src-pwa/manifest.json',
+      //   electronMain: 'src-electron/electron-main',
+      //   electronPreload: 'src-electron/electron-preload'
+      //   bexManifestFile: 'src-bex/manifest.json
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr

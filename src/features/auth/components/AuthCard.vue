@@ -67,7 +67,7 @@
 import { reactive } from 'vue';
 import { useUserStore } from 'src/entities/user/model/userStore';
 import { useForm } from 'vee-validate';
-import { loginSchema, registerSchema } from './model/auth.schema';
+import { loginSchema, registerSchema } from '../model/auth.schema';
 import { loginUser } from 'src/features/auth/login/model/login.api';
 import { registerUser } from 'src/features/auth/register/model/register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
