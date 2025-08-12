@@ -54,7 +54,7 @@
 
         <p class="account-exists">
           {{ isRegister ? 'Already have an account?' : "Don't have an account?" }}
-          <router-link :to="isRegister ? '/login' : '/register'">{{
+          <router-link :to="{ name: isRegister ? 'login' : 'register' }">{{
             isRegister ? 'Login' : 'Sign up'
           }}</router-link>
         </p>
@@ -69,6 +69,7 @@ import { useUserStore } from 'src/entities/user/model/userStore';
 import { useForm } from 'vee-validate';
 import { loginSchema, registerSchema } from './model/auth.schema';
 import { loginUser } from 'src/features/auth/login/model/login.api';
+import { registerUser } from 'src/features/auth/register/model/register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
 
 const userStore = useUserStore();
@@ -144,9 +145,30 @@ const onLogin = async () => {
   }
 };
 
+const onRegister = async () => {
+  try {
+    authState.loading = true;
+    authState.error = null;
+
+    const response = await registerUser({
+      email: email.value,
+      name: name.value,
+      password: password.value,
+      passwordRepeat: confirmPassword.value,
+    });
+
+    console.log(response);
+  } catch (error) {
+    // authState.error = (error as Error).message;
+    console.log(error);
+  } finally {
+    authState.loading = false;
+  }
+};
+
 const onSubmit = handleSubmit(async () => {
   if (props.isRegister) {
-    console.log('reg');
+    await onRegister();
   } else {
     await onLogin();
   }
