@@ -1,7 +1,9 @@
 export interface NavigationItem {
   label: string;
   icon: string;
-  to: string;
+  to?: string;
+  action?: 'logout';
+  color?: string;
 }
 
 export const sidebarNavigation: NavigationItem[] = [
@@ -11,13 +13,19 @@ export const sidebarNavigation: NavigationItem[] = [
     to: 'profile',
   },
   {
+    label: 'Сообщения',
+    icon: 'chat',
+    to: 'messages',
+  },
+  {
     label: 'Настройки',
     icon: 'settings',
     to: 'settings',
   },
   {
-    label: 'Сообщения',
-    icon: 'chat',
-    to: 'messages',
+    label: 'Выйти',
+    icon: 'logout',
+    action: 'logout',
+    color: 'negative',
   },
 ];

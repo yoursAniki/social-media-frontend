@@ -71,7 +71,9 @@ import { loginSchema, registerSchema } from '../model/auth.schema';
 import { loginUser } from 'src/features/auth/login/model/login.api';
 import { registerUser } from 'src/features/auth/register/model/register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
+import { useRedirect } from 'src/shared/utils/redirect';
 
+const { redirectAfterAuth } = useRedirect();
 const userStore = useUserStore();
 
 const props = defineProps<{
@@ -135,6 +137,8 @@ const onLogin = async () => {
     };
 
     userStore.setUser(user);
+
+    await redirectAfterAuth();
 
     console.log(response);
   } catch (error) {

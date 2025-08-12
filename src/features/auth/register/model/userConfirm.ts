@@ -2,9 +2,11 @@ import { reactive } from 'vue';
 import { useUserStore } from 'src/entities/user/model/userStore';
 import { confirmUser } from './register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
+import { useRedirect } from 'src/shared/utils/redirect';
 
 export const useUserConfirm = () => {
   const userStore = useUserStore();
+  const { redirectAfterAuth } = useRedirect();
 
   const confirmState = reactive({
     loading: false,
@@ -24,6 +26,8 @@ export const useUserConfirm = () => {
       };
 
       userStore.setUser(user);
+
+      await redirectAfterAuth();
     } catch (error) {
       confirmState.error = true;
       console.log(error);

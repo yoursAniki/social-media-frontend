@@ -15,12 +15,20 @@
       :breakpoint="426"
     >
       <h1 class="sidebar-title">{{ displayName }}</h1>
+
       <q-list class="sidebar-list">
-        <q-item v-for="item in navItems" clickable :key="item.label">
+        <q-item
+          v-for="item in navItems"
+          @click="item.action === 'logout' && handleLogout()"
+          clickable
+          :key="item.label"
+        >
           <q-item-section avatar>
-            <q-icon :name="item.icon" size="30px" />
+            <q-icon :name="item.icon" :color="item.color" size="30px" />
           </q-item-section>
-          <q-item-section> {{ item.label }} </q-item-section>
+          <q-item-section>
+            {{ item.label }}
+          </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
@@ -29,7 +37,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+import { onClickOutside, onKeyStroke } from '@vueuse/core';
 import type { NavigationItem } from 'src/shared/config/navbarItems';
 import BurgerMenuIcon from 'src/shared/ui/icons/BurgerMenuIcon.vue';
 
@@ -44,15 +52,23 @@ defineProps({
   },
 });
 
+const emit = defineEmits(['logout']);
+
 const isOpen = ref(false);
 
 const sidebarPanelRef = ref(null);
 
 onClickOutside(sidebarPanelRef, () => {
-  if (!isOpen.value) return;
-
-  isOpen.value = false;
+  if (isOpen.value) isOpen.value = false;
 });
+
+onKeyStroke('Escape', () => {
+  if (isOpen.value) isOpen.value = false;
+});
+
+const handleLogout = () => {
+  emit('logout');
+};
 </script>
 
 <style lang="scss">
