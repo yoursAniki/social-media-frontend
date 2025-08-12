@@ -6,9 +6,9 @@
 import { onMounted } from 'vue';
 import { useUserStore } from 'src/entities/user/model/userStore';
 
-const userStore = useUserStore();
+// const userStore = useUserStore();
 
-onMounted(() => {
-  userStore.init();
-});
+// onMounted(() => {
+//   userStore.init();
+// });
 </script>
