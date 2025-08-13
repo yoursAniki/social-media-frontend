@@ -76,6 +76,7 @@ import { useRedirect } from 'src/shared/utils/redirect';
 import { checkError } from 'src/shared/utils/errorCheck';
 import { errorNotify, successNotify } from 'src/shared/config/notifyItems';
 import { useI18n } from 'vue-i18n';
+import { onKeyStroke } from '@vueuse/core';
 
 const { redirectAfterAuth } = useRedirect();
 const { t } = useI18n();
@@ -188,6 +189,11 @@ const onSubmit = handleSubmit(async () => {
   } else {
     await onLogin();
   }
+});
+
+onKeyStroke('Enter', () => {
+  console.log('dfdf');
+  void onSubmit();
 });
 </script>
 
