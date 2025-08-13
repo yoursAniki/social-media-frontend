@@ -1,7 +1,7 @@
 <template>
   <q-card class="auth-card">
     <q-card-section>
-      <h1 class="auth-title">{{ isRegister ? 'Register' : 'Login' }}</h1>
+      <h1 class="auth-title">{{ isRegister ? $t('auth.register') : $t('auth.login') }}</h1>
 
       <q-form class="auth-form">
         <q-input
@@ -9,7 +9,7 @@
           :error="!!emailProps.error"
           :error-message="emailProps.error"
           type="email"
-          label="Email"
+          :label="$t('auth.email')"
           outlined
         />
 
@@ -19,7 +19,7 @@
           :error="!!nameProps.error"
           :error-message="nameProps.error"
           type="text"
-          label="Name"
+          :label="$t('auth.name')"
           outlined
         />
 
@@ -29,10 +29,10 @@
             :error="!!passwordProps.error"
             :error-message="passwordProps.error"
             type="password"
-            label="Password"
+            :label="$t('auth.password')"
             outlined
           />
-          <span v-if="!isRegister" class="forget-password">Forget password?</span>
+          <span v-if="!isRegister" class="forget-password">{{ $t('auth.forgetPassword') }}</span>
         </div>
 
         <q-input
@@ -41,7 +41,7 @@
           :error="!!confirmPasswordProps.error"
           :error-message="confirmPasswordProps.error"
           type="password"
-          label="Password confirm"
+          :label="$t('auth.confirmPassword')"
           outlined
         />
 
@@ -50,13 +50,13 @@
           :loading="authState.loading"
           class="auth-button"
           color="black"
-          :label="isRegister ? 'Register' : 'Login'"
+          :label="isRegister ? $t('auth.register') : $t('auth.login')"
         />
 
         <p class="account-exists">
-          {{ isRegister ? 'Already have an account?' : "Don't have an account?" }}
+          {{ isRegister ? $t('auth.accountExists') : $t('auth.accountNotExists') }}
           <router-link :to="{ name: isRegister ? 'login' : 'register' }">{{
-            isRegister ? 'Login' : 'Sign up'
+            isRegister ? $t('auth.login') : $t('auth.register')
           }}</router-link>
         </p>
       </q-form>
@@ -75,8 +75,10 @@ import type { IUser } from 'src/entities/user/model/user.types';
 import { useRedirect } from 'src/shared/utils/redirect';
 import { checkError } from 'src/shared/utils/errorCheck';
 import { errorNotify, successNotify } from 'src/shared/config/notifyItems';
+import { useI18n } from 'vue-i18n';
 
 const { redirectAfterAuth } = useRedirect();
+const { t } = useI18n();
 const userStore = useUserStore();
 
 const props = defineProps<{
@@ -147,7 +149,8 @@ const onLogin = async () => {
   } catch (error) {
     console.log(error);
 
-    const resultError = 'Ошибка: ' + checkError(error);
+    const resultError = checkError(error);
+
     errorNotify(resultError);
   } finally {
     authState.loading = false;
@@ -168,10 +171,10 @@ const onRegister = async () => {
 
     console.log(response);
 
-    successNotify('Письмо подтверждения отправлено на вашу почту');
+    successNotify(t('auth.mailWasSent'));
   } catch (error) {
     console.log(error);
-    const resultError = 'Ошибка: ' + checkError(error);
+    const resultError = checkError(error);
 
     errorNotify(resultError);
   } finally {

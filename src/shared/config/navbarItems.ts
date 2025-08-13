@@ -1,3 +1,4 @@
+import { useI18n } from 'vue-i18n';
 export interface NavigationItem {
   label: string;
   icon: string;
@@ -6,26 +7,34 @@ export interface NavigationItem {
   color?: string;
 }
 
-export const sidebarNavigation: NavigationItem[] = [
-  {
-    label: 'Профиль',
-    icon: 'person',
-    to: 'profile',
-  },
-  {
-    label: 'Сообщения',
-    icon: 'chat',
-    to: 'messages',
-  },
-  {
-    label: 'Настройки',
-    icon: 'settings',
-    to: 'settings',
-  },
-  {
-    label: 'Выйти',
-    icon: 'logout',
-    action: 'logout',
-    color: 'negative',
-  },
-];
+export const useNavBarItems = () => {
+  const { t } = useI18n();
+
+  const sidebarNavigation: NavigationItem[] = [
+    {
+      label: t('labels.profile'),
+      icon: 'person',
+      to: 'profile',
+    },
+    {
+      label: t('labels.messages'),
+      icon: 'chat',
+      to: 'messages',
+    },
+    {
+      label: t('labels.settings'),
+      icon: 'settings',
+      to: 'settings',
+    },
+    {
+      label: t('auth.logout'),
+      icon: 'logout',
+      action: 'logout',
+      color: 'negative',
+    },
+  ];
+
+  return {
+    sidebarNavigation,
+  };
+};

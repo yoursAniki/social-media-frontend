@@ -1,6 +1,6 @@
 <template>
   <q-page class="column items-center justify-evenly">
-    <div>{{ confirmState.error ? 'Error' : 'Success' }}</div>
+    <div>{{ confirmState.error ? $t('labels.error') : $t('labels.success') }}</div>
   </q-page>
 </template>
 
