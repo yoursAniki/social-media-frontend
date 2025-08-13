@@ -26,7 +26,7 @@
           <q-item-section avatar>
             <q-icon :name="item.icon" :color="item.color" size="30px" />
           </q-item-section>
-          <q-item-section>
+          <q-item-section :class="item.color">
             {{ item.label }}
           </q-item-section>
         </q-item>

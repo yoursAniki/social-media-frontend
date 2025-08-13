@@ -47,6 +47,7 @@
 
         <q-btn
           @click="onSubmit"
+          :loading="authState.loading"
           class="auth-button"
           color="black"
           :label="isRegister ? 'Register' : 'Login'"
@@ -72,6 +73,8 @@ import { loginUser } from 'src/features/auth/login/model/login.api';
 import { registerUser } from 'src/features/auth/register/model/register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
 import { useRedirect } from 'src/shared/utils/redirect';
+import { checkError } from 'src/shared/utils/errorCheck';
+import { errorNotify, successNotify } from 'src/shared/config/notifyItems';
 
 const { redirectAfterAuth } = useRedirect();
 const userStore = useUserStore();
@@ -142,8 +145,10 @@ const onLogin = async () => {
 
     console.log(response);
   } catch (error) {
-    // authState.error = (error as Error).message;
     console.log(error);
+
+    const resultError = 'Ошибка: ' + checkError(error);
+    errorNotify(resultError);
   } finally {
     authState.loading = false;
   }
@@ -162,9 +167,13 @@ const onRegister = async () => {
     });
 
     console.log(response);
+
+    successNotify('Письмо подтверждения отправлено на вашу почту');
   } catch (error) {
-    // authState.error = (error as Error).message;
     console.log(error);
+    const resultError = 'Ошибка: ' + checkError(error);
+
+    errorNotify(resultError);
   } finally {
     authState.loading = false;
   }
@@ -223,10 +232,11 @@ const onSubmit = handleSubmit(async () => {
 .account-exists {
   padding-top: 14px;
   margin: 0 auto;
+  color: $grey-7;
 
   a {
     text-decoration: none;
-    color: initial;
+    color: $black;
   }
 }
 </style>
