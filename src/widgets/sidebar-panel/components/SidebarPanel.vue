@@ -19,7 +19,7 @@
       <q-list class="sidebar-list">
         <q-item
           v-for="item in navItems"
-          @click="item.action === 'logout' && handleLogout()"
+          @click="handleItemClick(item.action)"
           clickable
           :key="item.label"
         >
@@ -39,6 +39,7 @@
 import { ref } from 'vue';
 import { onClickOutside, onKeyStroke } from '@vueuse/core';
 import type { NavigationItem } from 'src/shared/config/navbarItems';
+import { openProfilePanel } from 'src/features/panels-toggle/model/panelsToggle';
 import BurgerMenuIcon from 'src/shared/ui/icons/BurgerMenuIcon.vue';
 
 defineProps({
@@ -68,6 +69,19 @@ onKeyStroke('Escape', () => {
 
 const handleLogout = () => {
   emit('logout');
+};
+
+const handleItemClick = (action: string) => {
+  if (isOpen.value) isOpen.value = false;
+
+  switch (action) {
+    case 'logout':
+      handleLogout();
+      break;
+    case 'profile':
+      openProfilePanel();
+      break;
+  }
 };
 </script>
 

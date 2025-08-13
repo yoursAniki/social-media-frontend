@@ -13,8 +13,6 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     setUser(user: IUser) {
-      console.log(user, 'meoiooooooooooooooow');
-
       this.user = user;
       LocalStorage.set('user', user);
     },

@@ -3,7 +3,7 @@ export interface NavigationItem {
   label: string;
   icon: string;
   to?: string;
-  action?: 'logout';
+  action: 'logout' | 'profile' | 'messages' | 'settings';
   color?: string;
 }
 
@@ -14,17 +14,20 @@ export const useNavBarItems = () => {
     {
       label: t('labels.profile'),
       icon: 'person',
-      to: 'profile',
+      // to: 'profile',
+      action: 'profile',
     },
     {
       label: t('labels.messages'),
       icon: 'chat',
-      to: 'messages',
+      // to: 'messages',
+      action: 'messages',
     },
     {
       label: t('labels.settings'),
       icon: 'settings',
-      to: 'settings',
+      // to: 'settings',
+      action: 'settings',
     },
     {
       label: t('auth.logout'),
