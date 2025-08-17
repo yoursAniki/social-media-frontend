@@ -19,8 +19,11 @@ import { SidebarPanel } from 'src/widgets/sidebar-panel';
 import { useNavBarItems } from 'src/shared/config/navbarItems';
 import { logoutUser } from 'src/features/auth/logout/model/logout.api';
 import { useRedirect } from 'src/shared/utils/redirect';
+import { useErrorCheck } from 'src/shared/utils/errorCheck';
+import { errorNotify } from 'src/shared/config/notifyItems';
 
 const userStore = useUserStore();
+const { checkError } = useErrorCheck();
 const { redirectAfterLogout } = useRedirect();
 const { sidebarNavigation } = useNavBarItems();
 
@@ -35,6 +38,10 @@ const logout = async () => {
     await redirectAfterLogout();
   } catch (error) {
     console.error(error);
+
+    const resultError = checkError(error);
+
+    errorNotify(resultError);
   }
 };
 </script>

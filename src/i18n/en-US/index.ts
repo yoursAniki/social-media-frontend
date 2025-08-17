@@ -5,6 +5,8 @@ export default {
     profile: 'Profile',
     messages: 'Messages',
     settings: 'Settings',
+    enabled: 'Enabled',
+    disabled: 'Disabled',
   },
 
   errors: {
@@ -12,6 +14,8 @@ export default {
       label: 'Page not found',
       code: '404',
     },
+    unknownError: 'Unknown error',
+    errorWithoutDetails: 'Server error without details',
   },
 
   auth: {
@@ -26,5 +30,6 @@ export default {
     accountExists: 'Already have an account?',
     accountNotExists: "Don't have an account?",
     mailWasSent: 'Confirmation email has been sent to your email address',
+    twoFactorAuth: '2FA',
   },
 };

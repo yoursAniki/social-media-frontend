@@ -1,19 +1,29 @@
-export const checkError = (error: unknown) => {
-  let errorMessage = 'Неизвестная ошибка';
+import { useI18n } from 'vue-i18n';
 
-  if (typeof error === 'object' && error !== null && 'response' in error) {
-    const axiosError = error as {
-      response?: {
-        data?: {
-          message?: string;
+export const useErrorCheck = () => {
+  const { t } = useI18n();
+
+  const checkError = (error: unknown) => {
+    let errorMessage = t('errors.unknownError');
+
+    if (typeof error === 'object' && error !== null && 'response' in error) {
+      const axiosError = error as {
+        response?: {
+          data?: {
+            message?: string;
+          };
         };
       };
-    };
 
-    errorMessage = axiosError.response?.data?.message || 'Ошибка сервера без деталей';
-  } else if (error instanceof Error) {
-    errorMessage = error.message;
-  }
+      errorMessage = axiosError.response?.data?.message || t('errors.errorWithoutDetails');
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
 
-  return errorMessage;
+    return errorMessage;
+  };
+
+  return {
+    checkError,
+  };
 };

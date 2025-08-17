@@ -73,11 +73,12 @@ import { loginUser } from 'src/features/auth/login/model/login.api';
 import { registerUser } from 'src/features/auth/register/model/register.api';
 import type { IUser } from 'src/entities/user/model/user.types';
 import { useRedirect } from 'src/shared/utils/redirect';
-import { checkError } from 'src/shared/utils/errorCheck';
+import { useErrorCheck } from 'src/shared/utils/errorCheck';
 import { errorNotify, successNotify } from 'src/shared/config/notifyItems';
 import { useI18n } from 'vue-i18n';
 import { onKeyStroke } from '@vueuse/core';
 
+const { checkError } = useErrorCheck();
 const { redirectAfterAuth } = useRedirect();
 const { t } = useI18n();
 const userStore = useUserStore();

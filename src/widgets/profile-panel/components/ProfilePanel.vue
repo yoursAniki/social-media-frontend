@@ -50,6 +50,10 @@ const profilePanelItems = [
     label: t('auth.email'),
     data: user.value?.email,
   },
+  {
+    label: t('auth.twoFactorAuth'),
+    data: user.value?.isTwoFactorEnabled ? t('labels.enabled') : t('labels.disabled'),
+  },
 ];
 </script>
 
