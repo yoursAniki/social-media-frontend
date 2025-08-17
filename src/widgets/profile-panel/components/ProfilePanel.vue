@@ -14,11 +14,11 @@
         <q-avatar size="100px">
           <q-img src="src/assets/profile-icon.svg" alt="profile icon" />
         </q-avatar>
-        <span class="profile-name">{{ user?.displayName }}</span>
+        <span class="profile-name">{{ profilePanelItems.displayName }}</span>
       </q-card-section>
       <q-card-section>
         <q-list>
-          <q-item v-for="item in profilePanelItems" :key="item.label" class="column">
+          <q-item v-for="item in profilePanelItems.items" :key="item.label" class="column">
             <q-item-section>
               {{ item.data }}
             </q-item-section>
@@ -35,26 +35,12 @@
 <script lang="ts" setup>
 import { useUserStore } from 'src/entities/user/model/userStore';
 import { useDialogPluginComponent } from 'quasar';
-import { storeToRefs } from 'pinia';
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
-const userStore = useUserStore();
+import type { IProfilePanelItems } from 'src/shared/config/profilePanelItems';
+import { useProfilePanelItems } from 'src/shared/config/profilePanelItems';
 
 defineEmits([...useDialogPluginComponent.emits]);
 
-const { user } = storeToRefs(userStore);
-
-const profilePanelItems = [
-  {
-    label: t('auth.email'),
-    data: user.value?.email,
-  },
-  {
-    label: t('auth.twoFactorAuth'),
-    data: user.value?.isTwoFactorEnabled ? t('labels.enabled') : t('labels.disabled'),
-  },
-];
+const { profilePanelItems } = useProfilePanelItems();
 </script>
 
 <style lang="scss" scoped>
