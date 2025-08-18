@@ -39,7 +39,7 @@
 import { ref } from 'vue';
 import { onClickOutside, onKeyStroke } from '@vueuse/core';
 import type { NavigationItem } from 'src/shared/config/navbarItems';
-import { openProfilePanel } from 'src/features/panels-toggle/model/panelsToggle';
+import { usePanelsToggle } from 'src/features/panels-toggle/model/panelsToggle';
 import BurgerMenuIcon from 'src/shared/ui/icons/BurgerMenuIcon.vue';
 
 defineProps({
@@ -52,6 +52,8 @@ defineProps({
     required: true,
   },
 });
+
+const { openProfilePanel, openSettingsPanel } = usePanelsToggle();
 
 const emit = defineEmits(['logout']);
 
@@ -80,6 +82,9 @@ const handleItemClick = (action: string) => {
       break;
     case 'profile':
       openProfilePanel();
+      break;
+    case 'settings':
+      openSettingsPanel();
       break;
   }
 };

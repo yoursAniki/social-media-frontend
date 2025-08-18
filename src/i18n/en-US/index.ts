@@ -7,6 +7,7 @@ export default {
     settings: 'Settings',
     enabled: 'Enabled',
     disabled: 'Disabled',
+    language: 'Language',
   },
 
   errors: {

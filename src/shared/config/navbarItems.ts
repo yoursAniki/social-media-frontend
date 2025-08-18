@@ -1,8 +1,8 @@
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 export interface NavigationItem {
   label: string;
   icon: string;
-  to?: string;
   action: 'logout' | 'profile' | 'messages' | 'settings';
   color?: string;
 }
@@ -10,32 +10,31 @@ export interface NavigationItem {
 export const useNavBarItems = () => {
   const { t } = useI18n();
 
-  const sidebarNavigation: NavigationItem[] = [
-    {
-      label: t('labels.profile'),
-      icon: 'person',
-      // to: 'profile',
-      action: 'profile',
-    },
-    {
-      label: t('labels.messages'),
-      icon: 'chat',
-      // to: 'messages',
-      action: 'messages',
-    },
-    {
-      label: t('labels.settings'),
-      icon: 'settings',
-      // to: 'settings',
-      action: 'settings',
-    },
-    {
-      label: t('auth.logout'),
-      icon: 'logout',
-      action: 'logout',
-      color: 'negative',
-    },
-  ];
+  const sidebarNavigation = computed<NavigationItem[]>(() => {
+    return [
+      {
+        label: t('labels.profile'),
+        icon: 'person',
+        action: 'profile',
+      },
+      {
+        label: t('labels.messages'),
+        icon: 'chat',
+        action: 'messages',
+      },
+      {
+        label: t('labels.settings'),
+        icon: 'settings',
+        action: 'settings',
+      },
+      {
+        label: t('auth.logout'),
+        icon: 'logout',
+        action: 'logout',
+        color: 'negative',
+      },
+    ];
+  });
 
   return {
     sidebarNavigation,

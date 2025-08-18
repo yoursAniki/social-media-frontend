@@ -2,14 +2,8 @@
   <q-dialog transition-show="slide-left" transition-hide="slide-right">
     <!-- TODO add 'maximized' prop to q-dialog when on mobile or tablet -->
 
-    <q-card class="profile-panel">
-      <q-card-actions class="profile-panel-header" align="between">
-        <div>{{ $t('labels.profile') }}</div>
-        <div>
-          <q-btn icon="edit" flat padding="4px" size="15px" />
-          <q-btn icon="close" flat padding="4px" size="15px" v-close-popup />
-        </div>
-      </q-card-actions>
+    <q-card class="panel-card">
+      <panel-header edit-mode :label="$t('labels.profile')" />
       <q-card-section class="column items-center">
         <q-avatar size="100px">
           <q-img src="src/assets/profile-icon.svg" alt="profile icon" />
@@ -33,10 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from 'src/entities/user/model/userStore';
 import { useDialogPluginComponent } from 'quasar';
-import type { IProfilePanelItems } from 'src/shared/config/profilePanelItems';
 import { useProfilePanelItems } from 'src/shared/config/profilePanelItems';
+import { PanelHeader } from 'src/widgets/panel-header';
 
 defineEmits([...useDialogPluginComponent.emits]);
 
@@ -44,17 +37,6 @@ const { profilePanelItems } = useProfilePanelItems();
 </script>
 
 <style lang="scss" scoped>
-.profile-panel {
-  padding: 16px;
-  max-width: 600px;
-  width: 100%;
-}
-
-.profile-panel-header {
-  font-size: 22px;
-  font-weight: 500;
-}
-
 .profile-name {
   font-size: 20px;
   font-weight: 500;
