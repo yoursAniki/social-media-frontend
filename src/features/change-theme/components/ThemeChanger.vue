@@ -1,5 +1,5 @@
 <template>
-  <q-toggle size="48px" v-model="isDarkMode" />
+  <q-toggle v-model="isDarkMode" toggle-indeterminate indeterminate-value="auto" size="48px" />
 </template>
 
 <script lang="ts" setup>
@@ -16,5 +16,4 @@ watch(
 );
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
