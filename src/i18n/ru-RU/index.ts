@@ -8,6 +8,7 @@ export default {
     enabled: 'Включено',
     disabled: 'Выключено',
     language: 'Язык',
+    theme: 'Тёмная тема',
   },
 
   errors: {

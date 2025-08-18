@@ -7,7 +7,7 @@ import {
 } from 'vue-router';
 import routes from './routes';
 import { useUserStore } from 'src/entities/user/model/userStore';
-
+import { useThemeStore } from 'src/entities/theme/model/themeStore';
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -35,6 +35,9 @@ export default defineRouter(function (/* { store, ssrContext } */) {
   });
 
   const userStore = useUserStore();
+  const themeStore = useThemeStore();
+
+  themeStore.init();
   userStore.init();
 
   Router.beforeEach((to, from, next) => {

@@ -8,6 +8,7 @@ export default {
     enabled: 'Enabled',
     disabled: 'Disabled',
     language: 'Language',
+    theme: 'Dark theme',
   },
 
   errors: {

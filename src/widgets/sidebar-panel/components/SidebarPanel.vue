@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-drawer class="sidebar-panel" show-if-above side="right" bordered mini>
-      <burger-menu-icon class="cursor-pointer" @click="isOpen = !isOpen" color="black" />
+      <q-icon class="cursor-pointer" name="toc" size="45px" @click="isOpen = !isOpen" />
     </q-drawer>
 
     <!-- 425px max phone width -->

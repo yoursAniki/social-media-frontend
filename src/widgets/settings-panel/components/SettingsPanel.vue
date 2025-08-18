@@ -13,7 +13,18 @@
             </q-item-section>
 
             <q-item-section>
-              <locale-changer />
+              <locale-changer class="meowmeow" />
+            </q-item-section>
+          </q-item>
+
+          <q-item tag="label" v-ripple class="settings-item">
+            <q-item-section class="settings-item-label">
+              <q-icon name="dark_mode" size="30px" />
+              <span>{{ $t('labels.theme') }}</span>
+            </q-item-section>
+
+            <q-item-section>
+              <theme-changer />
             </q-item-section>
           </q-item>
         </q-list>
@@ -23,6 +34,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ThemeChanger } from 'src/features/change-theme';
+
 import { useDialogPluginComponent } from 'quasar';
 import { PanelHeader } from 'src/widgets/panel-header';
 import { LocaleChanger } from 'src/features/change-locale';
@@ -37,12 +50,11 @@ defineEmits([...useDialogPluginComponent.emits]);
 }
 
 .settings-item-label {
+  user-select: none;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start !important;
   gap: 15px;
 }
-
-
 </style>

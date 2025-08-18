@@ -18,11 +18,6 @@ export const useNavBarItems = () => {
         action: 'profile',
       },
       {
-        label: t('labels.messages'),
-        icon: 'chat',
-        action: 'messages',
-      },
-      {
         label: t('labels.settings'),
         icon: 'settings',
         action: 'settings',
