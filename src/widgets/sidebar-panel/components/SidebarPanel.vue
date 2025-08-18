@@ -23,11 +23,9 @@
           clickable
           :key="item.label"
         >
-          <q-item-section avatar>
+          <q-item-section class="sidebar-item-section" :class="item.color">
             <q-icon :name="item.icon" :color="item.color" size="30px" />
-          </q-item-section>
-          <q-item-section :class="item.color">
-            {{ item.label }}
+            <span>{{ item.label }}</span>
           </q-item-section>
         </q-item>
       </q-list>
@@ -113,5 +111,13 @@ const handleItemClick = (action: string) => {
 
 .sidebar-list {
   width: 100%;
+}
+
+.sidebar-item-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
 }
 </style>

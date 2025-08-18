@@ -6,4 +6,19 @@
   padding: 16px;
   max-width: 600px;
   width: 100%;
+
+  .q-card__section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .q-card__actions {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .q-item {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

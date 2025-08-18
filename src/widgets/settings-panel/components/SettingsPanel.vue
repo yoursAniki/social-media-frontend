@@ -7,7 +7,10 @@
       <q-card-section>
         <q-list class="column">
           <q-item class="settings-item">
-            <q-item-section>{{ $t('labels.language') }}</q-item-section>
+            <q-item-section class="settings-item-label">
+              <q-icon name="language" size="30px" />
+              <span>{{ $t('labels.language') }}</span>
+            </q-item-section>
 
             <q-item-section>
               <locale-changer />
@@ -32,4 +35,14 @@ defineEmits([...useDialogPluginComponent.emits]);
   display: flex;
   align-items: center;
 }
+
+.settings-item-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 15px;
+}
+
+
 </style>
