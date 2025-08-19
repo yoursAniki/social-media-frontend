@@ -13,7 +13,7 @@
             </q-item-section>
 
             <q-item-section>
-              <locale-changer class="meowmeow" />
+              <locale-changer />
             </q-item-section>
           </q-item>
 

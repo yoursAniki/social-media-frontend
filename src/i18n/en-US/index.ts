@@ -9,6 +9,8 @@ export default {
     disabled: 'Disabled',
     language: 'Language',
     theme: 'Dark theme',
+    search: 'Search',
+    message: 'Message',
   },
 
   errors: {
@@ -33,5 +35,9 @@ export default {
     accountNotExists: "Don't have an account?",
     mailWasSent: 'Confirmation email has been sent to your email address',
     twoFactorAuth: '2FA',
+  },
+
+  dialog: {
+    chooseWhoWantToWrite: 'Choose who you want to write to',
   },
 };

@@ -9,6 +9,8 @@ export default {
     disabled: 'Выключено',
     language: 'Язык',
     theme: 'Тёмная тема',
+    search: 'Поиск',
+    message: 'Сообщение',
   },
 
   errors: {
@@ -33,5 +35,9 @@ export default {
     accountNotExists: 'Нет аккаунта?',
     mailWasSent: 'Письмо отправлено',
     twoFactorAuth: '2FA',
+  },
+
+  dialog: {
+    chooseWhoWantToWrite: 'Выберите, кому вы хотите написать',
   },
 };
