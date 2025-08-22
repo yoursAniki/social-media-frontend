@@ -1,13 +1,13 @@
 <template>
   <q-page class="profile-page">
     <div class="dialog-list-container">
-      <div class="q-pa-md">
+      <div>
         <dialog-search />
       </div>
       <dialog-list />
     </div>
 
-    <dialog-display />
+    <dialog-display :chat="currentChatStore.currentChat" />
   </q-page>
 </template>
 
@@ -15,6 +15,17 @@
 import { DialogSearch } from 'src/widgets/dialog-search';
 import { DialogList } from 'src/widgets/dialog-list';
 import { DialogDisplay } from 'src/widgets/dialog-display';
+
+import { useCurrentChatStore } from 'src/entities/current-chat/model/currentChatStore';
+import { onKeyStroke } from '@vueuse/core';
+
+const currentChatStore = useCurrentChatStore();
+
+onKeyStroke('Escape', () => {
+  if (currentChatStore.currentChat) {
+    currentChatStore.clearChat();
+  }
+});
 </script>
 
 <style lang="scss">

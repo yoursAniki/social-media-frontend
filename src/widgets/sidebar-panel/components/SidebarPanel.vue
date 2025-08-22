@@ -18,7 +18,7 @@ const props = defineProps({
     type: Array as () => NavigationItem[],
     required: true,
   },
-  
+
 });
 
 const openSlidePanel = () => {
@@ -37,5 +37,7 @@ const openSlidePanel = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background: $dark-white;
 }
 </style>

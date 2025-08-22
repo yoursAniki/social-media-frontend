@@ -85,6 +85,8 @@ const handleItemClick = async (action: string) => {
 }
 
 .main-panel {
+  background: $dark-white;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
