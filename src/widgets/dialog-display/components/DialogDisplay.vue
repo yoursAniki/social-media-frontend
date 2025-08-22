@@ -1,6 +1,6 @@
 <template>
   <div class="dialog-display">
-    <dialog-header v-if="chat" :displayName="chat.displayName" />
+    <dialog-header v-if="chat" :display-name="chat.displayName" />
 
     <div class="dialog-display-content">
       <q-scroll-area v-if="chat" style="height: 100%" visible>
