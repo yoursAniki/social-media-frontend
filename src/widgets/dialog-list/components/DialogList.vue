@@ -2,8 +2,9 @@
   <q-scroll-area class="dialog-scroll-area" visible>
     <q-list>
       <dialog-item
-        v-for="(n, index) in 100"
-        @click="chooseUser(index)"
+        v-for="(chat, index) in chats"
+        @click="chooseUser(chat)"
+        :chat
         :key="index"
         class="q-py-xs"
       />
@@ -12,21 +13,33 @@
 </template>
 
 <script lang="ts" setup>
-import { useCurrentChatStore } from 'src/entities/current-chat/model/currentChatStore';
-
-import type { IUser } from 'src/entities/user/model/user.types';
 import { DialogItem } from 'src/widgets/dialog-item';
+
+import { useCurrentChatStore } from 'src/entities/current-chat/model/currentChatStore';
+import type { IUser } from 'src/entities/user/model/user.types';
 
 const currentChatStore = useCurrentChatStore();
 
-const chooseUser = (id: number) => {
-  const user: IUser = {
-    displayName: 'John Doe' + id,
+const chats: IUser[] = [
+  {
+    displayName: 'John Doe',
     email: 'cHtUd@example.com',
     isTwoFactorEnabled: false,
-  };
+  },
+  {
+    displayName: 'Jane Down',
+    email: 'dfkfdmail.ru',
+    isTwoFactorEnabled: false,
+  },
+  {
+    displayName: 'Donald Tramp',
+    email: 'tram2004@gmail.com',
+    isTwoFactorEnabled: false,
+  },
+];
 
-  currentChatStore.setChat(user);
+const chooseUser = (chat: IUser) => {
+  currentChatStore.setChat(chat);
 };
 </script>
 
